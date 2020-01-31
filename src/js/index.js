@@ -4,12 +4,12 @@ import { createElement } from './builders';
 
 function reducer(state, event, data) {
     switch (event){
-        case 'FOO':
-            return Object.assign({},state, {
-                name: 'Margarida'
-            });
-        case 'BAR':
-            return Object.assign({}, state, data);
+        case 'SET_ITEMS':
+            return Object.assign({}, state, {
+                items: data.items.reduce((total, item) =>
+                  Object.assign({}, total, { [item.id]: item })
+                  , {}),
+              });
         default:
             return state;
     }
@@ -17,34 +17,12 @@ function reducer(state, event, data) {
 
 const store = createStore(reducer);
 
-store.on('FOO', state => {
-    console.log('in FOO calback');
-    console.log(state);
-});
-
-store.on('BAR', state => {
-    console.log('in BAR calback');
-    console.log(state);
-});
-
-store.on('NOT_REAL', state => {
-    console.log('in NOT_REAL calback');
-    console.log(state);
-});
-
-store.trigger('BAR', {
-    name: 'andre',
-    job: 'web dev'
-});
-
-store.trigger('FOO');
-store.trigger('NOT_REAL');
-
 fetch('food.json')
     .then(res => res.json())
     .then(resBody => {
         const body = document.querySelector('body');
-        body.insertBefore(app(resBody), body.childNodes[0]);
+        body.insertBefore(app(store), body.childNodes[0]);
+        store.trigger('SET_ITEMS', {items: resBody});
     });
 
 
