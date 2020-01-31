@@ -20,8 +20,30 @@ export function $(query) {
         ele.appendChild(toAdd);
       });
     }
-  
+
+    function on(event, cb) {
+        elements.forEach(ele => {
+          ele.addEventListener(event, cb);
+        });
+    }
+
+    function addClass(klass) {
+        elements.forEach(ele => {
+          ele.classList.add(klass);
+        });
+    }
+      
+    function removeClass(klass) {
+        elements.forEach(ele => {
+          ele.classList.remove(klass);
+        });
+    }
+      
+
     return {
-      children,
+        on,
+        children,
+        addClass,
+        removeClass,
     };
   }
