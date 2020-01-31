@@ -58,6 +58,11 @@ export function h3(...children) {
 export function button(...children) {
     return createElement('button', ...children);
 }
+
+
+export function footer(...children) {
+    return createElement('footer', ...children);
+}
   
 export function addClass(element, ...klasses) {
     const newElement = element.cloneNode(true);
