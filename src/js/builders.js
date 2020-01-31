@@ -63,6 +63,14 @@ export function button(...children) {
 export function footer(...children) {
     return createElement('footer', ...children);
 }
+
+export function ul(...children) {
+    return createElement('ul', ...children);
+}
+
+export function li(...children) {
+    return createElement('li', ...children);
+}
   
 export function addClass(element, ...klasses) {
     const newElement = element.cloneNode(true);
