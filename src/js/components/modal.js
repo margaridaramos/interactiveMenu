@@ -19,6 +19,13 @@ export default function modal(store) {
       ele.removeClass('show');
     }
   });
-  
+
+  store.on('ITEM_ADDED', ({ items, cart }) => {
+    const cartArray = [...cart];
+    const cartItems = cartArray.map(itemId => modalItem(items[itemId]));
+    const cartList = addClass(ul(...cartItems), 'menu');
+    $('#cart-items').children(cartList);
+  });
+
   return modalEle;
 }

@@ -8,15 +8,20 @@ function reducer(state, event, data) {
         case 'SET_ITEMS':
             return Object.assign({}, state, {
                 items: data.items.reduce((total, item) =>
-                  Object.assign({}, total, { [item.id]: item })
+                Object.assign({}, total, { [item.id]: item })
                   , {}),
-              });
-              
+                });
+
         case 'TOGGLE_SHOW_CART':
             return Object.assign({}, state, {
                 cartVisible: !state.cartVisible,
                 });
-
+        
+        case 'ITEM_ADDED':
+            return Object.assign({}, state, {
+                cart: (new Set(state.cart)).add(data.item),
+                });
+                
         default:
             return state;
     }

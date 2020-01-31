@@ -38,12 +38,22 @@ export function $(query) {
           ele.classList.remove(klass);
         });
     }
-      
+    
+    function attr(attribute, value) {
+        elements.forEach(ele => {
+          if (value === false) {
+            ele.removeAttribute(attribute);
+          } else {
+            ele.setAttribute(attribute, value);
+          }
+        });
+    }
 
     return {
         on,
         children,
         addClass,
         removeClass,
+        attr,
     };
   }
