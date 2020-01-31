@@ -42,6 +42,22 @@ export function img(source) {
 export function span(...children) {
     return createElement('span', ...children);
 }
+
+export function h1(...children) {
+    return createElement('h1', ...children);
+}
+
+export function article(...children) {
+    return createElement('article', ...children);
+}
+
+export function h3(...children) {
+    return createElement('h3', ...children);
+}
+
+export function button(...children) {
+    return createElement('button', ...children);
+}
   
 export function addClass(element, ...klasses) {
     const newElement = element.cloneNode(true);
