@@ -21,6 +21,13 @@ function reducer(state, event, data) {
             return Object.assign({}, state, {
                 cart: (new Set(state.cart)).add(data.item),
                 });
+        
+        case 'ITEM_REMOVED':
+            const newCart = (new Set(state.cart));
+            newCart.delete(data.item);
+            return Object.assign({}, state, {
+                cart: newCart,
+                });
                 
         default:
             return state;

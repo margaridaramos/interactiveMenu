@@ -49,11 +49,16 @@ export function $(query) {
         });
     }
 
+    function map(cb) {
+      return elements.map(cb);
+    }
+
     return {
         on,
         children,
         addClass,
         removeClass,
         attr,
+        map,
     };
   }
